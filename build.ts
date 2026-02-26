@@ -2,7 +2,7 @@ import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
 import { rm, readFile } from "fs/promises";
 
-// Lista de dependencias que queremos incluir en el bundle
+// Lista de dependencias a incluir en el bundle
 const allowlist = [
   "@google/generative-ai",
   "axios",
@@ -32,16 +32,12 @@ const allowlist = [
 ];
 
 async function buildAll() {
-  // Limpiar dist
   await rm("dist", { recursive: true, force: true });
 
   console.log("building client...");
-
-  // ✨ Usar vite.ts directamente como config
-  await viteBuild({ configFile: "vite.ts" });
+  await viteBuild(); // Ahora encuentra vite.config.js automáticamente
 
   console.log("building server...");
-
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
   const allDeps = [
     ...Object.keys(pkg.dependencies || {}),
@@ -55,9 +51,7 @@ async function buildAll() {
     bundle: true,
     format: "cjs",
     outfile: "dist/index.cjs",
-    define: {
-      "process.env.NODE_ENV": '"production"',
-    },
+    define: { "process.env.NODE_ENV": '"production"' },
     minify: true,
     external: externals,
     logLevel: "info",
