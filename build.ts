@@ -2,7 +2,7 @@ import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
 import { rm, readFile } from "fs/promises";
 
-// Lista de dependencias que queremos bundlear
+// Lista de dependencias que queremos incluir en el bundle
 const allowlist = [
   "@google/generative-ai",
   "axios",
@@ -31,18 +31,14 @@ const allowlist = [
   "zod-validation-error",
 ];
 
-const isRender = !!process.env.RENDER; // Detecta si estamos en Render
-
 async function buildAll() {
   // Limpiar dist
   await rm("dist", { recursive: true, force: true });
 
   console.log("building client...");
 
-  // Usar vite.config.render.js en Render, vite.config.js en Replit
-  await viteBuild({
-    configFile: isRender ? "vite.config.render.js" : "vite.config.js",
-  });
+  // ✨ Usar vite.ts directamente como config
+  await viteBuild({ configFile: "vite.ts" });
 
   console.log("building server...");
 
