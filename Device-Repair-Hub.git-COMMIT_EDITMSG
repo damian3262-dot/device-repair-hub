@@ -1,0 +1,10 @@
+Add support for multiple device types and repair checklists
+
+Extend the order schema to include device types and a detailed checklist for device inspection. Update the order form and detail view to accommodate these new fields. Implement a simulated WhatsApp notification for order updates.
+
+Replit-Commit-Author: Agent
+Replit-Commit-Session-Id: 75b6ae53-603d-4108-ae6b-f2e00b5699d1
+Replit-Commit-Checkpoint-Type: full_checkpoint
+Replit-Commit-Event-Id: 5b6330a7-d262-416a-8982-b96b72cc2928
+Replit-Commit-Screenshot-Url: https://storage.googleapis.com/screenshot-production-us-central1/233bb1bb-9c5d-40d1-8030-c67976f3e1b7/75b6ae53-603d-4108-ae6b-f2e00b5699d1/5LhDtr6
+Replit-Helium-Checkpoint-Created: true
